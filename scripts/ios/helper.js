@@ -20,6 +20,10 @@ module.exports = {
 
     var appName = utilities.getAppName(context);
 
+    // hacking because our project name doesn't match the app name (which is
+    // essentially a display name for the app)
+    appName = "Condatte";
+
     return path.join("platforms", "ios", appName + ".xcodeproj", "project.pbxproj");
   },
 
