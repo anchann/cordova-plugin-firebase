@@ -18,11 +18,10 @@ module.exports = {
      */
   getXcodeProjectPath: function (context) {
 
-    var appName = utilities.getAppName(context);
-
+    // var appName = utilities.getAppName(context);
     // hacking because our project name doesn't match the app name (which is
     // essentially a display name for the app)
-    appName = "Condatte";
+    var appName = "Condatte";
 
     return path.join("platforms", "ios", appName + ".xcodeproj", "project.pbxproj");
   },
@@ -42,7 +41,13 @@ module.exports = {
     xcodeProject.parseSync();
 
     // Build the body of the script to be executed during the build phase.
-    var script = '"' + '\\"${SRCROOT}\\"' + "/\\\"" + utilities.getAppName(context) + "\\\"/Plugins/" + utilities.getPluginId() + "/Fabric.framework/run" + '"';
+
+    // var appName = utilities.getAppName(context);
+    // hacking because our project name doesn't match the app name (which is
+    // essentially a display name for the app)
+    var appName = "Condatte";
+
+    var script = '"' + '\\"${SRCROOT}\\"' + "/\\\"" + appName + "\\\"/Plugins/" + utilities.getPluginId() + "/Fabric.framework/run" + '"';
 
     // Generate a unique ID for our new build phase.
     var id = xcodeProject.generateUuid();
